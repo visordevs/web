@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>VISOR</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div style="z-index: 4; width: 100vw; height: 100vh; margin: 0px">
+        <div style="z-index: 5; position: absolute; margin-left: 25px; top: 0">
+          <h1
+            class="titleA"
+            style="
+              font-family: Future Tech;
+              display: inline-flex;
+              font-size: 75px;
+              color: rgb(228, 139, 57);
+            ">
+            VISOR
+          </h1>
+          <h1
+            style="
+              font-family: helvetica;
+              display: inline-flex;
+              font-size: 25px;
+              margin-left: 10px;
+              color: rgb(228, 139, 57);
+            ">
+            defend your privacy
+          </h1>
+        </div>
+        <div class="container">
+          <details open="false">
+            <summary>Details</summary>
+            <div class="folder">
+              <details>
+                <summary>
+                  Anonymous Transactions on the Ethereum Network
+                </summary>
+                <div class="folder">
+                  <p>
+                    Visage believes in the power of anonymity, in the security
+                    of privacy, in the inalienable right to freedom.
+                  </p>
+                  <p>
+                    Its blockchain-based platform ensures that transactions are
+                    transparent, tamper-proof, and instantaneous, making it the
+                    perfect choice for businesses and individuals alike. Its low
+                    transaction fees and fast confirmation times will make it an
+                    outstanding protocol.
+                  </p>
+                </div>
+              </details>
+              <details>
+                <summary>Roadmap</summary>
+                <div class="folder">
+                  <details>
+                    <summary>Stage 1 (Seed Round)</summary>
+                    <div class="folder">
+                      <p>Whitepaper Release</p>
+                      <p>Open Telegram Collabland</p>
+                    </div>
+                  </details>
+                  <details open="open">
+                    <summary>Stage 2 (Alpha Launch)</summary>
+                    <div class="folder">
+                      <p>Dashboard Reveal</p>
+                      <p>Bug Bounty</p>
+                      <p>Core Team Onboarding</p>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>stage 3 (open beta)</summary>
+                    <div class="folder">
+                      <p>Ecosystem Preview</p>
+                      <p>Whitepaper Release</p>
+                      <p>Community Treasury</p>
+                      <p>CMC + CG, Trending, Listings</p>
+                    </div>
+                  </details>
+                </div>
+              </details>
+              <details open="open">
+                <summary>tokenomics</summary>
+                <div class="folder">
+                  <details>
+                    <summary>Tax</summary>
+                    <div class="folder">
+                      <details>
+                        <summary>Buy</summary>
+                        <div class="folder">
+                          <p>2% Development</p>
+                          <p>4% Liquditiy</p>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>Sell</summary>
+                        <div class="folder">
+                          <p>2% Development</p>
+                          <p>4% Liquditiy</p>
+                        </div>
+                      </details>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Total Supply</summary>
+                    <div class="folder">
+                      <p>10Bln</p>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Max Transaction</summary>
+                    <div class="folder">
+                      <p>100Mln</p>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Max Wallet</summary>
+                    <div class="folder">
+                      <p>200Mln</p>
+                    </div>
+                  </details>
+                </div>
+              </details>
+              <details>
+                <summary>socials</summary>
+                <div class="folder">
+                  <a href="https://medium.com/@visage_vis">medium</a>
+                  <a
+                    href="https://etherscan.io/address/0x77a485e81e07d706e754051e243604ba26d1420c"
+                    >etherscan</a
+                  >
+                  <a href="https://twitter.com/VISAGE_VIS">twitter</a>
+                </div>
+              </details>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Import maps polyfill -->
+      <!-- Remove this when import maps will be widely supported -->
+      <script
+        async
+        src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+      <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.143.0/three.module.min.js"
+          }
+        }
+      </script>
+
+      <script type="module">
+        import * as THREE from "three";
+
+        import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.143.0/examples/jsm/loaders/GLTFLoader.js";
+        import { TextureLoader } from "https://cdn.jsdelivr.net/npm/three@0.143.0/src/loaders/TextureLoader.js";
+        import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.143.0/examples/jsm/controls/OrbitControls.js";
+        import { RGBELoader } from "https://cdn.jsdelivr.net/npm/three@0.143.0/examples/jsm/loaders/RGBELoader.js";
+
+        let mesh, renderer, scene, camera, controls, mousecoords;
+        let timeoutId;
+        let gui,
+          guiExposure = null;
+        let mouse = new THREE.Vector2();
+        let vector = new THREE.Vector3();
+        var model = new THREE.Group();
+        const raycaster = new THREE.Raycaster();
+
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+
+        const params = {
+          exposure: 1.0,
+          toneMapping: "ACESFilmic",
+        };
+
+        const toneMappingOptions = {
+          None: THREE.NoToneMapping,
+          Linear: THREE.LinearToneMapping,
+          Reinhard: THREE.ReinhardToneMapping,
+          Cineon: THREE.CineonToneMapping,
+          ACESFilmic: THREE.ACESFilmicToneMapping,
+          Custom: THREE.CustomToneMapping,
+        };
+
+        init().catch(function (err) {
+          console.error(err);
+        });
+
+        async function init() {
+          renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+          renderer.setClearColor(0xffffff, 0);
+          renderer.setPixelRatio(window.devicePixelRatio);
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          document.body.appendChild(renderer.domElement);
+
+          renderer.toneMapping = toneMappingOptions[params.toneMapping];
+          renderer.toneMappingExposure = params.exposure;
+
+          renderer.outputEncoding = THREE.sRGBEncoding;
+
+          // Set CustomToneMapping to Uncharted2
+          // source: http://filmicworlds.com/blog/filmic-tonemapping-operators/
+          THREE.ShaderChunk.tonemapping_pars_fragment =
+            THREE.ShaderChunk.tonemapping_pars_fragment.replace(
+              "vec3 CustomToneMapping( vec3 color ) { return color; }",
+              `#define Uncharted2Helper( x ) max( ( ( x * ( 0.15 * x + 0.10 * 0.50 ) + 0.20 * 0.02 ) / ( x * ( 0.15 * x + 0.50 ) + 0.20 * 0.30 ) ) - 0.02 / 0.30, vec3( 0.0 ) )
+          float toneMappingWhitePoint = 1.0;
+          vec3 CustomToneMapping( vec3 color ) {
+          	color *= toneMappingExposure;
+          	return saturate( Uncharted2Helper( color ) / Uncharted2Helper( vec3( toneMappingWhitePoint ) ) );
+          }`
+            );
+
+          //setup
+          scene = new THREE.Scene();
+          camera = new THREE.PerspectiveCamera(
+            45,
+            window.innerWidth / window.innerHeight,
+            0.25,
+            20
+          );
+          camera.position.set(-0.6, -0.1, 2.9);
+
+          //load
+          const rgbeLoader = new RGBELoader().setPath("./");
+          const gltfLoader = new GLTFLoader().setPath("./gltf/");
+
+          const [texture, gltf] = await Promise.all([
+            rgbeLoader.loadAsync("moonless_golf_1k.hdr"),
+            gltfLoader.loadAsync("damagedhelmet.gltf"),
+          ]);
+
+          // environment
+          texture.mapping = THREE.EquirectangularReflectionMapping;
+          scene.environment = texture;
+
+          // model
+          scene.add(model);
+          // const axesHelper = new THREE.AxesHelper(5);
+          // scene.add(axesHelper);
+          mesh = gltf.scene.getObjectByName("node_damagedHelmet_-6514");
+          // mesh.add(axesHelper);
+          model.add(mesh);
+
+          //listeners
+          document.addEventListener("mousemove", onMouseMove, false);
+          window.addEventListener("resize", onWindowResize);
+        }
+
+        function onWindowResize() {
+          camera.aspect = window.innerWidth / window.innerHeight;
+
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onMouseMove(event) {
+          vector.x = (event.clientX / window.innerWidth) * 2 - 1;
+          vector.y = -(event.clientY / window.innerHeight) * 2 + 1;
+          vector.z = 0.5;
+          // Make the mesh look at the vector
+          model.lookAt(vector);
+        }
+
+        function animate() {
+          requestAnimationFrame(animate);
+          renderer.render(scene, camera);
+        }
+        animate();
+      </script>
+    </div>
+  </body>
+</html>
