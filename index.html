@@ -12,7 +12,7 @@
   <body>
     <div class="wrapper">
       <div style="z-index: 4; width: 100vw; height: 100vh; margin: 0px">
-        <div style="z-index: 5; position: absolute; margin-left: 25px; top: 0">
+        <div style="z-index: 5; position: absolute; margin-left: 15px; top: 0">
           <h1
             class="titleA"
             style="
@@ -20,6 +20,8 @@
               display: inline-flex;
               font-size: 75px;
               color: rgb(228, 139, 57);
+              margin: 0;
+              margin-top: 10px;
             ">
             VISOR
           </h1>
@@ -86,7 +88,9 @@
                 </div>
               </details>
               <details open="open">
-                <summary>tokenomics</summary>
+                <summary style="overflow-x: scroll">
+                  tokenomics 0x000000000000000000000000000000000000dead
+                </summary>
                 <div class="folder">
                   <details>
                     <summary>Tax</summary>
@@ -94,15 +98,13 @@
                       <details>
                         <summary>Buy</summary>
                         <div class="folder">
-                          <p>2% Development</p>
-                          <p>4% Liquditiy</p>
+                          <p>1% Development</p>
                         </div>
                       </details>
                       <details>
                         <summary>Sell</summary>
                         <div class="folder">
-                          <p>2% Development</p>
-                          <p>4% Liquditiy</p>
+                          <p>1% Development</p>
                         </div>
                       </details>
                     </div>
@@ -110,19 +112,19 @@
                   <details>
                     <summary>Total Supply</summary>
                     <div class="folder">
-                      <p>10Bln</p>
+                      <p>2_500_000_000</p>
                     </div>
                   </details>
                   <details>
                     <summary>Max Transaction</summary>
                     <div class="folder">
-                      <p>100Mln</p>
+                      <p>25_000_000</p>
                     </div>
                   </details>
                   <details>
                     <summary>Max Wallet</summary>
                     <div class="folder">
-                      <p>200Mln</p>
+                      <p>25_000_000</p>
                     </div>
                   </details>
                 </div>
@@ -233,7 +235,7 @@
 
           //load
           const rgbeLoader = new RGBELoader().setPath("./");
-          const gltfLoader = new GLTFLoader().setPath("./");
+          const gltfLoader = new GLTFLoader().setPath("./gltf/");
 
           const [texture, gltf] = await Promise.all([
             rgbeLoader.loadAsync("moonless_golf_1k.hdr"),
