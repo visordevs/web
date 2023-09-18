@@ -233,7 +233,7 @@
 
           //load
           const rgbeLoader = new RGBELoader().setPath("./");
-          const gltfLoader = new GLTFLoader().setPath("./gltf/");
+          const gltfLoader = new GLTFLoader().setPath("./");
 
           const [texture, gltf] = await Promise.all([
             rgbeLoader.loadAsync("moonless_golf_1k.hdr"),
