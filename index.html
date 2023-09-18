@@ -171,6 +171,7 @@
           guiExposure = null;
         let mouse = new THREE.Vector2();
         let vector = new THREE.Vector3();
+        let lerpVector = new THREE.Vector3();
         var model = new THREE.Group();
         const raycaster = new THREE.Raycaster();
 
@@ -232,7 +233,7 @@
 
           //load
           const rgbeLoader = new RGBELoader().setPath("./");
-          const gltfLoader = new GLTFLoader().setPath("./");
+          const gltfLoader = new GLTFLoader().setPath("./gltf/");
 
           const [texture, gltf] = await Promise.all([
             rgbeLoader.loadAsync("moonless_golf_1k.hdr"),
@@ -268,10 +269,11 @@
           vector.y = -(event.clientY / window.innerHeight) * 2 + 1;
           vector.z = 0.5;
           // Make the mesh look at the vector
-          model.lookAt(vector);
         }
 
         function animate() {
+          lerpVector.lerp(vector, 0.05);
+          model.lookAt(lerpVector);
           requestAnimationFrame(animate);
           renderer.render(scene, camera);
         }
